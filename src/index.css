@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #f0fdf4;
+  --color-primary-100: #dcfce7;
+  --color-primary-500: #22c55e;
+  --color-primary-600: #16a34a;
+  --color-primary-700: #15803d;
+  --color-dark-700: #334155;
+  --color-dark-800: #1e293b;
+  --color-dark-900: #0f172a;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  :root {
+    --background: #f8fafc; /* slate-50 */
+    --foreground: #0f172a; /* slate-900 */
+  }
+  
+  .dark {
+    --background: #0f172a; /* slate-900 */
+    --foreground: #f8fafc; /* slate-50 */
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    /* Soft blurred radial gradient background */
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(253,16%,7%,0) 0, transparent 50%), 
+      radial-gradient(at 50% 0%, hsla(225,39%,30%,0.05) 0, transparent 50%), 
+      radial-gradient(at 100% 0%, hsla(339,49%,30%,0.05) 0, transparent 50%);
+    background-attachment: fixed;
+  }
+  
+  .dark body {
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(253,16%,7%,0) 0, transparent 50%), 
+      radial-gradient(at 50% 0%, hsla(225,39%,30%,0.15) 0, transparent 50%), 
+      radial-gradient(at 100% 0%, hsla(339,49%,30%,0.15) 0, transparent 50%);
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border border-white/40 dark:border-slate-800/60 shadow-sm transition-all duration-300;
+  }
+  .glass-card {
+    @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border border-white/50 dark:border-slate-800/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] transition-all duration-300;
+  }
+  .input-focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/50 focus-visible:border-primary-500 transition-all duration-200;
+  }
+}
