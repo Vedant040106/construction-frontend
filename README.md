@@ -47,6 +47,9 @@ npm run build
 
 The compiled assets will be available inside the `/dist` directory.
 
+### 4. Deployment
+This project is fully ready to be deployed on modern hosting platforms like Vercel. Continuous deployment is supported through the local configuration, ensuring environment variables and deployment metadata remain securely ignored by version control. We recommend using Vercel or Netlify for instant zero-config deployments.
+
 ## 🏗️ Project Structure
 - `/src/components/*` - Reusable UI elements (Buttons, Inputs, Cards)
 - `/src/pages/*` - Main routable pages (Login, ProjectList, DPRForm)
