@@ -1,4 +1,5 @@
 import { MapPin, Calendar, Activity } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/Card';
 import { cn } from '../utils/cn';
 
@@ -10,10 +11,15 @@ export const ProjectCard = ({ project, onClick }) => {
   };
 
   return (
-    <Card 
-      onClick={onClick}
-      className="cursor-pointer hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-primary-900/10 transition-all duration-300 hover:border-primary-500/40 dark:hover:border-primary-500/30 group hover:-translate-y-1"
+    <motion.div
+      whileHover={{ y: -4, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
     >
+      <Card 
+        onClick={onClick}
+        className="cursor-pointer hover:shadow-2xl dark:hover:shadow-primary-900/20 transition-all duration-300 hover:border-primary-500/40 dark:hover:border-primary-500/30 group bg-white/70 dark:bg-slate-900/60 h-full"
+      >
       <CardHeader className="pb-3">
         <div className="flex justify-between items-start gap-4">
           <CardTitle className="text-xl group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
@@ -45,9 +51,11 @@ export const ProjectCard = ({ project, onClick }) => {
             <Activity size={16} className="text-slate-400" />
             <div className="flex-1 flex items-center gap-2">
               <div className="h-2 flex-1 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-primary-500 rounded-full transition-all duration-500" 
-                  style={{ width: `${project.progress}%` }} 
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: `${project.progress}%` }}
+                  transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+                  className="h-full bg-primary-500 rounded-full" 
                 />
               </div>
               <span className="text-xs font-medium w-9">{project.progress}%</span>
@@ -56,5 +64,6 @@ export const ProjectCard = ({ project, onClick }) => {
         </div>
       </CardContent>
     </Card>
+    </motion.div>
   );
 };

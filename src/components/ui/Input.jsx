@@ -1,11 +1,17 @@
 import { forwardRef } from 'react';
+import { motion } from 'framer-motion';
 import { cn } from '../../utils/cn';
 
 export const Input = forwardRef(({ className, label, error, ...props }, ref) => {
   return (
-    <div className="w-full space-y-2">
+    <motion.div 
+      initial={{ opacity: 0, y: 5 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="w-full space-y-2"
+    >
       {label && (
-        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-300">
+        <label className="text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-300">
           {label}
         </label>
       )}
@@ -23,7 +29,7 @@ export const Input = forwardRef(({ className, label, error, ...props }, ref) => 
           {error}
         </p>
       )}
-    </div>
+    </motion.div>
   );
 });
 
